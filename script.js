@@ -32,9 +32,7 @@ const validateEmail = (email) => {
 };
 
 // API URL based on environment
-const apiUrl = window.location.hostname === 'localhost' 
-    ? 'http://localhost:5000/api/subscribe' 
-    : 'https://your-app-name.vercel.app/api/subscribe'; // Replace with your actual production URL
+const apiUrl = 'https://your-actual-deployed-backend-url.com/api/subscribe'; // Update this
 
 document.getElementById('subscribe-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
@@ -46,10 +44,6 @@ document.getElementById('subscribe-form').addEventListener('submit', function(ev
         document.getElementById('message').innerText = 'Please enter a valid email.';
         return;
     }
-
-    // Disable the submit button
-    const submitButton = document.getElementById('subscribe-form').querySelector('button[type="submit"]');
-    submitButton.disabled = true;
 
     // Send the email to your backend
     fetch(apiUrl, {
@@ -72,8 +66,5 @@ document.getElementById('subscribe-form').addEventListener('submit', function(ev
     .catch(error => {
         console.error('Error:', error);
         document.getElementById('message').innerText = 'Error submitting email.';
-    })
-    .finally(() => {
-        submitButton.disabled = false; // Re-enable the button
     });
 });
