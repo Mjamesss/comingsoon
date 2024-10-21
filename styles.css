@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #b3b3b3;
+  }
+  
+  .container {
+    margin-top: 50px;
+  }
+  
+  #countdown {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  #countdown div {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  #subscription-form {
+    margin-top: 20px;
+    
+  }
+  
+  #subscription-form input {
+    padding: 10px;
+    font-size: 16px;
+    width: 250px;
+  }
+  
+  #subscription-form button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  
