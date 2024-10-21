@@ -1,45 +1,77 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #b3b3b3;
-  }
-  
-  .container {
-    margin-top: 50px;
-  }
-  
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #b3b3b3;
+}
+
+.container {
+  margin-top: 50px;
+  padding: 0 15px; /* Added padding for better spacing on smaller screens */
+}
+
+#countdown {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#countdown div {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/* Subscription form styles */
+#subscription-form {
+  margin-top: 20px;
+}
+
+#subscription-form input {
+  padding: 10px;
+  font-size: 16px;
+  width: 250px;
+}
+
+#subscription-form button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 600px) {
   #countdown {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    font-size: 24px;
-    font-weight: bold;
+      flex-direction: column; /* Stack the countdown vertically */
+      font-size: 18px; /* Reduce font size */
   }
-  
+
   #countdown div {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    border-radius: 5px;
+      margin: 5px 0; /* Add spacing between countdown elements */
   }
-  #subscription-form {
-    margin-top: 20px;
-    
-  }
-  
+
   #subscription-form input {
-    padding: 10px;
-    font-size: 16px;
-    width: 250px;
+      width: 100%; /* Make the input full width */
   }
-  
+
   #subscription-form button {
-    padding: 10px;
-    font-size: 16px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+      width: 100%; /* Make the button full width */
   }
-  
-  
+
+  h1 {
+      font-size: 24px; /* Adjust heading size for smaller screens */
+  }
+
+  h2 {
+      font-size: 18px; /* Adjust subheading size for smaller screens */
+  }
+
+  p {
+      font-size: 16px; /* Adjust paragraph size for smaller screens */
+  }
+}
