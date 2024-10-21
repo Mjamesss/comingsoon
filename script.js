@@ -1,3 +1,4 @@
+// script.js
 // Set the date for the launch
 const launchDate = new Date('Nov 30, 2024 00:00:00').getTime();
 
@@ -34,50 +35,40 @@ const validateEmail = (email) => {
 // API URL based on environment
 const apiUrl = window.location.hostname === 'localhost' 
     ? 'http://localhost:5000/api/subscribe' 
-    : 'https://your-production-url.com/api/subscribe';
+    : 'https://your-actual-deployed-backend-url.com/api/subscribe'; // Update this for production
 
-document.getElementById('subscribe-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
-
-    const email = document.getElementById('email').value;
-
-    // Validate the email format
-    if (!email || !validateEmail(email)) {
-        document.getElementById('message').innerText = 'Please enter a valid email.';
-        return;
-    }
-
-    // Disable the submit button
-    const submitButton = document.getElementById('subscribe-form').querySelector('button[type="submit"]');
-    submitButton.disabled = true;
-
-    // Send the email to your backend
-    fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email })
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+    document.getElementById('subscribe-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+    
+        const email = document.getElementById('email').value; // Get the email from the input field
+    
+        // Validate the email format (optional)
+        if (!email) {
+            document.getElementById('message').innerText = 'Please enter a valid email.';
+            return;
         }
-        return response.json();
-    })
-    .then(data => {
-        document.getElementById('message').innerText = data.message;
-        document.getElementById('subscribe-form').reset(); // Reset the form
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        document.getElementById('message').innerText = 'Error submitting email.';
-
-        if (error.response) {
-            console.error('Response:', error.response);
-        }
-    })
-    .finally(() => {
-        submitButton.disabled = false; // Re-enable the button
+    
+        // Send the email to your backend
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email }) // This creates the JSON structure
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            document.getElementById('message').innerText = data.message;
+            document.getElementById('subscribe-form').reset(); // Reset the form
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('message').innerText = 'Error submitting email.';
+        });
     });
-});
+    
