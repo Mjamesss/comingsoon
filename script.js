@@ -24,3 +24,28 @@ const timer = setInterval(() => {
     document.getElementById('countdown').innerHTML = 'We are live!';
   }
 }, 1000);
+
+document.getElementById('subscribe-form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent the default form submission
+
+  const email = document.getElementById('email').value;
+
+  // Send the email to your backend
+  fetch('http://localhost:5000/api/subscribe', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email })
+  })
+  .then(response => response.json())
+  .then(data => {
+      document.getElementById('message').innerText = data.message;
+      document.getElementById('subscribe-form').reset(); // Reset the form
+  })
+  .catch(error => {
+      console.error('Error:', error);
+      document.getElementById('message').innerText = 'Error submitting email.';
+  });
+});
+
