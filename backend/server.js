@@ -1,14 +1,13 @@
 const express = require('express');
+const cors = require('cors');
 const mysql = require('mysql');
-const cors = require('cors'); // Import CORS
 require('dotenv').config(); // Load environment variables
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors()); // Use CORS middleware
-app.use(express.json());
+app.use(cors()); // Enable CORS
+app.use(express.json()); // Middleware to parse JSON
 
 // MySQL connection
 const db = mysql.createConnection({
@@ -31,7 +30,6 @@ db.connect((err) => {
 app.post('/api/subscribe', (req, res) => {
     const email = req.body.email;
 
-    // Insert the email into the subscribers table
     const query = 'INSERT INTO subscribers (email) VALUES (?)';
     db.query(query, [email], (err, result) => {
         if (err) {
